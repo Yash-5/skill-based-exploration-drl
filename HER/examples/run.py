@@ -2,6 +2,8 @@ import argparse
 import time
 import os
 import logging
+import sys
+sys.path += ["."]
 from HER import logger, bench
 from HER.common.misc_util import (
     set_global_seeds,
@@ -18,6 +20,8 @@ from mpi4py import MPI
 
 ## my imports
 import HER.envs
+
+import multiworld.envs.mujoco
 
 def run(env_id, seed, noise_type, layer_norm, evaluation, **kwargs):
     # Configure things.
