@@ -1,6 +1,74 @@
 from gym.envs.registration import register
 import HER
 
+# Sawyer wrappers
+register(
+    id='WrapSawyerReachXYEnv-v1',
+    entry_point='HER.envs.SawyerWrapper:WrapSawyerReachXYEnv',
+    kwargs={
+    'hide_goal_markers': True,
+    'norm_order': 2,
+    'nb_step_limit': 200,
+    }
+)
+
+register(
+    id='WrapSawyerPushAndReachEnvEasy-v0',
+    entry_point='HER.envs.SawyerWrapper:WrapSawyerPushAndReachXYEnv',
+    kwargs=dict(
+        goal_low=(-0.15, 0.4, 0.02, -.1, .45),
+        goal_high=(0.15, 0.7, 0.02, .1, .65),
+        puck_low=(-.1, .45),
+        puck_high=(.1, .65),
+        hand_low=(-0.15, 0.4, 0.02),
+        hand_high=(0.15, .7, 0.02),
+        norm_order=2,
+        xml_path='sawyer_xyz/sawyer_push_puck.xml',
+        reward_type='state_distance',
+        reset_free=False,
+        clamp_puck_on_step=True,
+        nb_step_limit=200,
+    )
+)
+
+register(
+    id='WrapSawyerPushAndReachEnvMedium-v0',
+    entry_point='HER.envs.SawyerWrapper:WrapSawyerPushAndReachXYEnv',
+    kwargs=dict(
+        goal_low=(-0.2, 0.35, 0.02, -.15, .4),
+        goal_high=(0.2, 0.75, 0.02, .15, .7),
+        puck_low=(-.15, .4),
+        puck_high=(.15, .7),
+        hand_low=(-0.2, 0.35, 0.05),
+        hand_high=(0.2, .75, 0.3),
+        norm_order=2,
+        xml_path='sawyer_xyz/sawyer_push_puck.xml',
+        reward_type='state_distance',
+        reset_free=False,
+        clamp_puck_on_step=True,
+        nb_step_limit=200,
+    )
+)
+
+register(
+    id='WrapSawyerPushAndReachEnvHard-v0',
+    entry_point='HER.envs.SawyerWrapper:WrapSawyerPushAndReachXYEnv',
+    kwargs=dict(
+        goal_low=(-0.25, 0.3, 0.02, -.2, .35),
+        goal_high=(0.25, 0.8, 0.02, .2, .75),
+        puck_low=(-.2, .35),
+        puck_high=(.2, .75),
+        hand_low=(-0.25, 0.3, 0.02),
+        hand_high=(0.25, .8, 0.02),
+        norm_order=2,
+        xml_path='sawyer_xyz/sawyer_push_puck.xml',
+        reward_type='state_distance',
+        reset_free=False,
+        clamp_puck_on_step=True,
+        nb_step_limit=200,
+    )
+)
+
 # joint space envs
 register(
     id='Reacher3dj-v0',
